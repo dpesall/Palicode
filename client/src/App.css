@@ -1,0 +1,91 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(40px + 8vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+body {
+  background-color: #444;
+  color: white;
+  margin: 20px;
+  font: 32px "Century Gothic", Futura, sans-serif;
+}
+
+.game {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.game-title {
+  font-weight: bold;
+  font-size: 48px;
+}
+
+.board {
+  background-color: aqua;
+  padding: 4px;
+}
+
+.board-row {
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+.square {
+  background-color: #282c34;
+  color: white;
+  border: 2px solid #999999;
+  padding: 0;
+  font-size: 168px;
+  text-align: center;
+  width: 200px;
+  height: 200px;
+}
+
+.square:focus {
+  outline:none;
+  background-color: #222;
+}
+
+.status {
+  margin: 20px;
+  font-size: 24px;
+  text-align: center;
+}
+
+.reset:focus {
+  outline:none;
+  background-color: #222;
+}
+
+.reset-button {
+  text-align: center;
+}
+
+.reset {
+  padding: 10px;
+  font-size: 32px;
+  margin-top: 50px;
+  background-color: #282c34;
+  border: 2px solid white;
+  color: white;
+}
