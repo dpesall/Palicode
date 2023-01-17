@@ -25,7 +25,6 @@
 body {
   background-color: #444;
   color: white;
-  margin: 20px;
   font: 32px "Century Gothic", Futura, sans-serif;
 }
 
@@ -88,4 +87,17 @@ body {
   background-color: #282c34;
   border: 2px solid white;
   color: white;
+}
+
+.navbar {
+  background-color: #222222;
+  padding: 15px;
+}
+
+.nav-item {
+  border-right: 2px solid white;
+}
+
+.show-pointer {
+  cursor: pointer;
 }
