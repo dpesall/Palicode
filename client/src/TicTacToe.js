@@ -34,6 +34,7 @@ function Board() {
             return;
         }
         const newSquares = [...squares];
+        console.log(newSquares)
         newSquares[i] = xIsNext ? 'X' : 'O';
         setXIsNext(!xIsNext);
         setSquares(newSquares);

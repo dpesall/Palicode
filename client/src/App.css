@@ -98,6 +98,32 @@ body {
   border-right: 2px solid white;
 }
 
+.nav-item-last {
+
+}
+
 .show-pointer {
   cursor: pointer;
+}
+
+.no-pointer:hover {
+  cursor: default;
+}
+
+.p-square {
+  font-size: 36px;
+  width: 100px;
+  height: 100px;
+  line-height: 100px;
+  background-color: #262732;
+  color: white;
+  text-align: center;
+  border: 3px black solid;
+  text-transform: capitalize;
+}
+
+.word-hint {
+  text-align: center;
+  border: 2px black solid;
+  background-color: #222222;
 }
