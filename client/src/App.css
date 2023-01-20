@@ -116,7 +116,6 @@ body {
   height: 100px;
   line-height: 100px;
   background-color: #262732;
-  color: white;
   text-align: center;
   border: 3px black solid;
   text-transform: capitalize;
@@ -126,4 +125,20 @@ body {
   text-align: center;
   border: 2px black solid;
   background-color: #222222;
+  text-transform: capitalize;
+}
+
+.word-row {
+  color: white;
+}
+
+.fade-quick {
+  opacity: 1;
+  animation: fade 1s linear;
+}
+
+
+@keyframes fade {
+  0% { opacity: 1 }
+  100% { opacity: 0 }
 }

@@ -1,20 +1,33 @@
 const path = require('path');
 const express = require("express");
+const fs = require('fs');
+const nthline = require('nthline');
 
 const PORT = process.env.PORT || 3001;
 
 const app = express();
 
+const fileRoot = 'server-resources/';
+const maxLines = 25;
+
+let firstWord = false;
+
 // Have Node serve the files for our built React app
 app.use(express.static(path.resolve(__dirname, '../client/build')));
 
-// Handle GET requests to /api route
-app.get("/api", (req, res) => {
-    res.json({ message: "Hello from server!" });
-});
-
-app.get("/retrieve-word", (req, res) => {
-    res.json({ message: "palicode" });
+app.get("/api/retrieve-word", (req, res) => {
+    if(firstWord) {
+        res.json({ message: 'palicode' });
+        firstWord = false;
+    } else {
+        try {
+            let lineIndex = Math.floor(Math.random() * maxLines);
+            nthline(lineIndex, fileRoot + 'words.txt').then(line => res.json({ message: line }));
+        } catch(e) {
+            console.log('Error:', e.stack);
+            res.json({message: 'error'});
+        }
+    }
 });
 
 // All other GET requests not handled before will return our React app

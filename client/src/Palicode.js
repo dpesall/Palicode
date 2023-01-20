@@ -16,16 +16,24 @@ const Square = (props) => {
 const Game = () => {
     const defaultWordLength = 8;
     const initialSquares = Array(defaultWordLength).fill(null);
+
     const [count, setCount] = useState(0);
     const [word, setWord] = useState('');
+    const [completed, setCompleted] = useState(0);
+    const [wordColor, setWordColor] = useState('white');
     const [squares, setSquares] =  useState(initialSquares);
     const [wordLength, setWordLength] = useState(defaultWordLength);
+    const [visible, setVisible] = useState(true);
 
-    useEffect(() => {
-        fetch('/retrieve-word')
+    const fadeStyle = {
+        color: wordColor,
+    }
+
+    const getNewWord = useEffect(() => {
+        fetch('/api/retrieve-word')
             .then((res) => res.json())
             .then((data) => updateWordData(data))
-    }, []);
+    }, [completed]);
 
     useEffect(() => {
         document.addEventListener('keypress', handleKeyPress);
@@ -45,6 +53,7 @@ const Game = () => {
             newSquares[count - 1] = '';
             setSquares(newSquares);
             setCount(count - 1);
+            setWordColor('white');
         }
     };
 
@@ -53,7 +62,29 @@ const Game = () => {
             const newSquares = [...squares];
             newSquares[count] = event.key;
             setSquares(newSquares);
+            if(count == wordLength - 1) {
+                for(let i = 0; i < wordLength; i++) {
+                    if(newSquares[i] !== word[i]) {
+                        setWordColor('red');
+                        break;
+                    }
+                    if(i === wordLength - 1) {
+                        setWordColor('#00d142');
+                        setVisible(false);
+                        setCount(0);
+                        setTimeout(() => {
+                            setVisible(true);
+                            setSquares(initialSquares);
+                            setCompleted(completed + 1);
+                        }, 1000);
+                        return;
+                    }
+                }
+            } else {
+                setWordColor('white');
+            }
             setCount(count + 1);
+            
         }
     };
 
@@ -76,14 +107,14 @@ const Game = () => {
 
         return (
             <div>
-                <div className={"word-hint"}>
+                <div className={"word-hint word-row"}>
                     Word: {word}
                 </div>
-                <div className={"board-row no-pointer"}>
+                <div className={"board-row word-row no-pointer"}>
                     {wordSquares}
                 </div>
                 <br/>
-                <div className={"board-row"}>
+                <div className={"board-row word-row " + (visible ? '' : 'fade-quick')} style={{color: wordColor}}>
                     {blankSquares}
                 </div>
             </div>
