@@ -14,7 +14,6 @@ const Square = (props) => {
 }
 
 function Board() {
-    const [data, setData] = React.useState(null);
     const initialSquares = Array(9).fill(null);
     const [squares, setSquares] =  useState(initialSquares);
     const [xIsNext, setXIsNext] = useState(true);
@@ -23,18 +22,11 @@ function Board() {
     const winner = calculateWinner(squares);
     const status = getStatus(moveCount, winner, xIsNext);
 
-    React.useEffect(() => {
-        fetch("/api")
-            .then((res) => res.json())
-            .then((data) => setData(data.message));
-    }, []);
-
     const handleClickEvent = (i) => {
         if(squares[i] != null || calculateWinner(squares) != null) {
             return;
         }
         const newSquares = [...squares];
-        console.log(newSquares)
         newSquares[i] = xIsNext ? 'X' : 'O';
         setXIsNext(!xIsNext);
         setSquares(newSquares);
@@ -96,7 +88,7 @@ const Game = () => {
 }
 
 const getStatus = (moveCount, winner, xIsNext) => {
-    if(moveCount === 9) {
+    if(moveCount === 9 && !winner) {
         return `The game is a draw`
     }
 
@@ -109,7 +101,7 @@ function calculateWinner(squares) {
     const lines = [
         [0, 1, 2], [3, 4, 5], [6, 7, 8], // rows
         [0, 3, 6], [1, 4, 7], [2, 5, 8], // columns
-        [0, 4, 8], [2, 4, 6]            // diagonals
+        [0, 4, 8], [2, 4, 6]             // diagonals
     ]
 
     for(let line of lines) {

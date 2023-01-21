@@ -137,8 +137,34 @@ body {
   animation: fade 1s linear;
 }
 
-
 @keyframes fade {
   0% { opacity: 1 }
   100% { opacity: 0 }
+}
+
+.stats-box {
+  background-color: #222222;
+  width: 30%;
+  border: 3px black solid;
+  border-bottom: 0px black solid ;
+  font-size: 24px;
+}
+
+.stats-row {
+  text-align: center;
+  border-bottom: 3px black solid;
+}
+
+.stats-header {
+  text-align: center;
+  border-bottom: 3px black solid;
+  font-size: 32px;
+  padding: 5px;
+}
+
+.reset-button {
+  color: white;
+  width: 150px;
+  height: 60px;
+  border: 2px black solid;
 }
